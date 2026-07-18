@@ -3,17 +3,14 @@ import pybind11
 
 ext_modules = [
     Extension(
-        "ptui",
+        "ptui.core",
         sources=["ptui/bindings.cpp"],
         include_dirs=[
             pybind11.get_include(),
             pybind11.get_include(user=True),
         ],
         language="c++",
-        cxx_std=20,
-        # Windows-specific
-        extra_compile_args=["-O3"] if not __import__('sys').platform.startswith('win') else [],
-        extra_link_args=["-O3"] if not __import__('sys').platform.startswith('win') else [],
+        extra_compile_args=["-std=c++20", "-O3"] if not __import__('sys').platform.startswith('win') else ["/std:c++20", "/O2"],
     ),
 ]
 

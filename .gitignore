@@ -1,11 +1,23 @@
+# Compiled files
 *.so
 *.pyd
-__pycache__/
+*.o
+*.obj
+
+# Build directories
 build/
 dist/
 *.egg-info/
 .eggs/
-*.o
-*.obj
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE files
 .vscode/
 .idea/
+
+# OS files
+.DS_Store
+Thumbs.db

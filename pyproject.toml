@@ -1,16 +1,21 @@
 [build-system]
-requires = ["setuptools>=45", "wheel", "pybind11>=2.10"]
+requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "PYTUINT"
 version = "0.2.0"
-description = "A Python Terminal User Interface library with a C++ rendering engine"
+description = "Python Terminal User Interface"
+readme = "README.md"
 requires-python = ">=3.8"
-dependencies = ["pybind11>=2.10"]
+license = {text = "MIT"}
+dependencies = []
 
-[tool.setuptools]
-package-dir = { "" = "src" }
+[project.optional-dependencies]
+test = ["pytest"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+PYTUINT = ["*.py", "**/*.py"]

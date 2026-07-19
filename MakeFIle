@@ -1,0 +1,13 @@
+.PHONY: build clean release
+
+build:
+	pip install build
+	python -m build
+
+clean:
+	rm -rf dist/ build/ *.egg-info
+	# Windows: rmdir /s /q dist build *.egg-info
+
+release:
+	git tag v0.2.0
+	git push origin v0.2.0

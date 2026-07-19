@@ -1,4 +1,4 @@
-"""Python fallback implementation for PTUI's core API.
+"""Python fallback implementation for PYTUINT's core API.
 
 This module provides a lightweight, dependency-free implementation so the
 package can be imported and exercised even when the optional C++ extension

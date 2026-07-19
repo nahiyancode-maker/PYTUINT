@@ -1,11 +1,11 @@
-#include "ptui/ptui.hpp"
+#include "PYTUINT/PYTUINT.hpp"
 #include <iostream>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <thread>
 #include <chrono>
 
-namespace ptui {
+namespace PYTUINT {
 
 namespace py = pybind11;
 
@@ -75,7 +75,7 @@ std::string Button::render() {
 }
 
 void run(py::function app) {
-    std::cout << "PTUI Application Starting...\n";
+    std::cout << "PYTUINT Application Starting...\n";
     
     // Main event loop
     while (true) {
@@ -85,4 +85,4 @@ void run(py::function app) {
     }
 }
 
-} // namespace ptui
+} // namespace PYTUINT

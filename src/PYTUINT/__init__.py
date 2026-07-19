@@ -1,4 +1,4 @@
-"""PTUI - React-inspired Terminal UI Framework."""
+"""PYTUINT - React-inspired Terminal UI Framework."""
 
 from ._core import (
     useState,

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""System Dashboard - Real-time system monitor with PTUI"""
+"""System Dashboard - Real-time system monitor with PYTUINT"""
 
-import ptui
-import ptui.widgets as widgets
+import PYTUINT
+import PYTUINT.widgets as widgets
 import time
 import random
 import math
 
-class Dashboard(ptui.Component):
+class Dashboard(PYTUINT.Component):
     def __init__(self):
         super().__init__()
         self.cpu_history = [0] * 60
@@ -17,7 +17,7 @@ class Dashboard(ptui.Component):
     def render(self):
         term = self.state("terminal")
         if not term:
-            return ptui.Element.create("container")
+            return PYTUINT.Element.create("container")
         
         # Update metrics every second
         now = time.time()
@@ -29,43 +29,43 @@ class Dashboard(ptui.Component):
             self.last_update = now
         
         # Header
-        header = widgets.Text("📊 System Dashboard", ptui.Style()
-            .fg(ptui.colors.BrightCyan)
+        header = widgets.Text("📊 System Dashboard", PYTUINT.Style()
+            .fg(PYTUINT.colors.BrightCyan)
             .bold()
-            .set_text_align(ptui.TextAlign.Center)
+            .set_text_align(PYTUINT.TextAlign.Center)
             .set_width(term.width()))
         
         # CPU Graph
-        cpu_graph = self.draw_graph(self.cpu_history, ptui.colors.Green, "CPU Usage")
+        cpu_graph = self.draw_graph(self.cpu_history, PYTUINT.colors.Green, "CPU Usage")
         
         # Memory Graph
-        mem_graph = self.draw_graph(self.mem_history, ptui.colors.Blue, "Memory Usage")
+        mem_graph = self.draw_graph(self.mem_history, PYTUINT.colors.Blue, "Memory Usage")
         
         # Stats
         stats = widgets.Container(
-            ptui.Style()
-                .set_flex_direction(ptui.FlexDirection.Row)
-                .set_justify_content(ptui.JustifyContent.SpaceAround)
+            PYTUINT.Style()
+                .set_flex_direction(PYTUINT.FlexDirection.Row)
+                .set_justify_content(PYTUINT.JustifyContent.SpaceAround)
                 .set_padding(1),
             [
-                self.stat_box("CPU", f"{self.cpu_history[-1]:.1f}%", ptui.colors.Green),
-                self.stat_box("Memory", f"{self.mem_history[-1]:.1f}%", ptui.colors.Blue),
-                self.stat_box("Uptime", "12:34:56", ptui.colors.Yellow),
-                self.stat_box("Processes", "128", ptui.colors.Magenta),
+                self.stat_box("CPU", f"{self.cpu_history[-1]:.1f}%", PYTUINT.colors.Green),
+                self.stat_box("Memory", f"{self.mem_history[-1]:.1f}%", PYTUINT.colors.Blue),
+                self.stat_box("Uptime", "12:34:56", PYTUINT.colors.Yellow),
+                self.stat_box("Processes", "128", PYTUINT.colors.Magenta),
             ]
         )
         
         # Layout
         layout = widgets.Container(
-            ptui.Style()
-                .set_flex_direction(ptui.FlexDirection.Column)
+            PYTUINT.Style()
+                .set_flex_direction(PYTUINT.FlexDirection.Column)
                 .set_padding(1),
             [
                 header,
                 cpu_graph,
                 mem_graph,
                 stats,
-                widgets.Text("Press 'q' to quit", ptui.Style().fg(ptui.colors.Gray))
+                widgets.Text("Press 'q' to quit", PYTUINT.Style().fg(PYTUINT.colors.Gray))
             ]
         )
         
@@ -100,45 +100,45 @@ class Dashboard(ptui.Component):
             lines.append(''.join(row))
         
         return widgets.Container(
-            ptui.Style()
+            PYTUINT.Style()
                 .set_padding(1)
-                .set_border(ptui.BorderStyle(color, ptui.BorderStyle.Style.Solid, 1)),
-            [widgets.Text(line, ptui.Style().fg(color)) for line in lines]
+                .set_border(PYTUINT.BorderStyle(color, PYTUINT.BorderStyle.Style.Solid, 1)),
+            [widgets.Text(line, PYTUINT.Style().fg(color)) for line in lines]
         )
     
     def stat_box(self, label, value, color):
         return widgets.Container(
-            ptui.Style()
+            PYTUINT.Style()
                 .set_padding(1)
-                .set_border(ptui.BorderStyle(color, ptui.BorderStyle.Style.Solid, 1))
+                .set_border(PYTUINT.BorderStyle(color, PYTUINT.BorderStyle.Style.Solid, 1))
                 .set_width(20),
             [
-                widgets.Text(label, ptui.Style().fg(ptui.colors.Gray)),
-                widgets.Text(value, ptui.Style().fg(color).bold().set_font_size(2))
+                widgets.Text(label, PYTUINT.Style().fg(PYTUINT.colors.Gray)),
+                widgets.Text(value, PYTUINT.Style().fg(color).bold().set_font_size(2))
             ]
         )
     
     def handle_event(self, event):
-        if event.key == ptui.Key.Q:
+        if event.key == PYTUINT.Key.Q:
             return None
         return self.render()
 
 def main():
-    term = ptui.Terminal()
+    term = PYTUINT.Terminal()
     term.init()
-    term.set_title("PTUI System Dashboard")
+    term.set_title("PYTUINT System Dashboard")
     term.show_cursor(False)
     
     dashboard = Dashboard()
     dashboard.set_state("terminal", term)
     
-    reconciler = ptui.Reconciler(term)
+    reconciler = PYTUINT.Reconciler(term)
     reconciler.mount(dashboard)
     
     running = True
     while running:
         event = term.get_event(100)
-        if event.type != ptui.EventType.NoEvent:
+        if event.type != PYTUINT.EventType.NoEvent:
             result = dashboard.handle_event(event)
             if result is None:
                 running = False

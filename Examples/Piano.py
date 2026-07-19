@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Piano - Musical terminal piano with PTUI"""
+"""Piano - Musical terminal piano with PYTUINT"""
 
-import ptui
-import ptui.widgets as widgets
+import PYTUINT
+import PYTUINT.widgets as widgets
 import math
 
-class Piano(ptui.Component):
+class Piano(PYTUINT.Component):
     def __init__(self):
         super().__init__()
         self.active_notes = set()
@@ -15,13 +15,13 @@ class Piano(ptui.Component):
     def render(self):
         term = self.state("terminal")
         if not term:
-            return ptui.Element.create("container")
+            return PYTUINT.Element.create("container")
         
         # Title
-        header = widgets.Text("🎹 PTUI Piano", ptui.Style()
-            .fg(ptui.colors.BrightMagenta)
+        header = widgets.Text("🎹 PYTUINT Piano", PYTUINT.Style()
+            .fg(PYTUINT.colors.BrightMagenta)
             .bold()
-            .set_text_align(ptui.TextAlign.Center)
+            .set_text_align(PYTUINT.TextAlign.Center)
             .set_width(term.width()))
         
         # Piano keys
@@ -32,10 +32,10 @@ class Piano(ptui.Component):
         # White keys
         for i, note in enumerate(white_keys):
             is_active = note in self.active_notes
-            style = ptui.Style().bg(ptui.colors.White if is_active else ptui.colors.LightGray).fg(ptui.colors.Black).set_width(5).set_height(3)
+            style = PYTUINT.Style().bg(PYTUINT.colors.White if is_active else PYTUINT.colors.LightGray).fg(PYTUINT.colors.Black).set_width(5).set_height(3)
             
             key = widgets.Container(style, [
-                widgets.Text(note, ptui.Style().set_text_align(ptui.TextAlign.Center))
+                widgets.Text(note, PYTUINT.Style().set_text_align(PYTUINT.TextAlign.Center))
             ])
             keys.append(key.render())
         
@@ -45,50 +45,50 @@ class Piano(ptui.Component):
             if not note:
                 continue
             is_active = note in self.active_notes
-            style = ptui.Style().bg(ptui.colors.Black if is_active else ptui.colors.DarkGray).fg(ptui.colors.White).set_width(3).set_height(2)
+            style = PYTUINT.Style().bg(PYTUINT.colors.Black if is_active else PYTUINT.colors.DarkGray).fg(PYTUINT.colors.White).set_width(3).set_height(2)
             
             key = widgets.Container(style, [
-                widgets.Text(note, ptui.Style().set_text_align(ptui.TextAlign.Center))
+                widgets.Text(note, PYTUINT.Style().set_text_align(PYTUINT.TextAlign.Center))
             ])
             black_key_elements.append(key.render())
         
         # Controls
         controls = widgets.Container(
-            ptui.Style()
-                .set_flex_direction(ptui.FlexDirection.Row)
-                .set_justify_content(ptui.JustifyContent.Center)
+            PYTUINT.Style()
+                .set_flex_direction(PYTUINT.FlexDirection.Row)
+                .set_justify_content(PYTUINT.JustifyContent.Center)
                 .set_padding(1),
             [
                 widgets.Button("◀ Octave", lambda: self.change_octave(-1), 
-                    ptui.Style().bg(ptui.colors.Blue).fg(ptui.colors.White)),
-                widgets.Text(f"  Octave: {self.octave}  ", ptui.Style().fg(ptui.colors.White)),
+                    PYTUINT.Style().bg(PYTUINT.colors.Blue).fg(PYTUINT.colors.White)),
+                widgets.Text(f"  Octave: {self.octave}  ", PYTUINT.Style().fg(PYTUINT.colors.White)),
                 widgets.Button("Octave ▶", lambda: self.change_octave(1),
-                    ptui.Style().bg(ptui.colors.Blue).fg(ptui.colors.White)),
-                widgets.Text("  Volume: ", ptui.Style().fg(ptui.colors.White)),
+                    PYTUINT.Style().bg(PYTUINT.colors.Blue).fg(PYTUINT.colors.White)),
+                widgets.Text("  Volume: ", PYTUINT.Style().fg(PYTUINT.colors.White)),
                 widgets.Button("-", lambda: self.change_volume(-0.1),
-                    ptui.Style().bg(ptui.colors.Red).fg(ptui.colors.White)),
-                widgets.Text(f" {int(self.volume * 100)}% ", ptui.Style().fg(ptui.colors.White)),
+                    PYTUINT.Style().bg(PYTUINT.colors.Red).fg(PYTUINT.colors.White)),
+                widgets.Text(f" {int(self.volume * 100)}% ", PYTUINT.Style().fg(PYTUINT.colors.White)),
                 widgets.Button("+", lambda: self.change_volume(0.1),
-                    ptui.Style().bg(ptui.colors.Green).fg(ptui.colors.White)),
+                    PYTUINT.Style().bg(PYTUINT.colors.Green).fg(PYTUINT.colors.White)),
             ]
         )
         
         # Help
         help_text = widgets.Text(
             "Keys: A S D F G H J (white) | W E T Y U (black) | Q: quit",
-            ptui.Style().fg(ptui.colors.Gray).set_text_align(ptui.TextAlign.Center)
+            PYTUINT.Style().fg(PYTUINT.colors.Gray).set_text_align(PYTUINT.TextAlign.Center)
         )
         
         # Layout
         layout = widgets.Container(
-            ptui.Style()
-                .set_flex_direction(ptui.FlexDirection.Column)
-                .set_align_items(ptui.AlignItems.Center)
+            PYTUINT.Style()
+                .set_flex_direction(PYTUINT.FlexDirection.Column)
+                .set_align_items(PYTUINT.AlignItems.Center)
                 .set_padding(2),
             [
                 header,
                 widgets.Container(
-                    ptui.Style().set_flex_direction(ptui.FlexDirection.Row),
+                    PYTUINT.Style().set_flex_direction(PYTUINT.FlexDirection.Row),
                     keys
                 ),
                 controls,
@@ -108,36 +108,36 @@ class Piano(ptui.Component):
     
     def handle_event(self, event):
         key_map = {
-            ptui.Key.A: 'C', ptui.Key.S: 'D', ptui.Key.D: 'E', ptui.Key.F: 'F',
-            ptui.Key.G: 'G', ptui.Key.H: 'A', ptui.Key.J: 'B',
-            ptui.Key.W: 'C#', ptui.Key.E: 'D#', ptui.Key.T: 'F#',
-            ptui.Key.Y: 'G#', ptui.Key.U: 'A#'
+            PYTUINT.Key.A: 'C', PYTUINT.Key.S: 'D', PYTUINT.Key.D: 'E', PYTUINT.Key.F: 'F',
+            PYTUINT.Key.G: 'G', PYTUINT.Key.H: 'A', PYTUINT.Key.J: 'B',
+            PYTUINT.Key.W: 'C#', PYTUINT.Key.E: 'D#', PYTUINT.Key.T: 'F#',
+            PYTUINT.Key.Y: 'G#', PYTUINT.Key.U: 'A#'
         }
         
         if event.key in key_map:
             self.active_notes.add(key_map[event.key])
             self.force_update()
-        elif event.key == ptui.Key.Q:
+        elif event.key == PYTUINT.Key.Q:
             return None
         
         return self.render()
 
 def main():
-    term = ptui.Terminal()
+    term = PYTUINT.Terminal()
     term.init()
-    term.set_title("PTUI Piano")
+    term.set_title("PYTUINT Piano")
     term.show_cursor(False)
     
     piano = Piano()
     piano.set_state("terminal", term)
     
-    reconciler = ptui.Reconciler(term)
+    reconciler = PYTUINT.Reconciler(term)
     reconciler.mount(piano)
     
     running = True
     while running:
         event = term.get_event(50)
-        if event.type != ptui.EventType.NoEvent:
+        if event.type != PYTUINT.EventType.NoEvent:
             result = piano.handle_event(event)
             if result is None:
                 running = False

@@ -1,5 +1,5 @@
 """
-Python-side utilities for PTUI
+Python-side utilities for PYTUINT
 """
 
 def create_style(**kwargs):

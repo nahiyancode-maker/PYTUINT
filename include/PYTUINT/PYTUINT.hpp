@@ -1,33 +1,6 @@
-// ============================================================================
-// PTUI - Professional Terminal User Interface Library
-// A React-inspired TUI framework for C++ with Python bindings
-// 
-// Features:
-//   - Virtual DOM with O(n) diffing algorithm
-//   - Full Hooks system (useState, useEffect, useContext, useRef, useMemo, useCallback, useReducer)
-//   - Context API with Provider/Consumer
-//   - Component lifecycle (mount/update/unmount/error boundaries)
-//   - Suspense for async operations
-//   - Router with history API
-//   - Flexbox layout engine
-//   - Animation system with keyframes
-//   - Form handling with validation
-//   - Theme system
-//   - Event delegation & bubbling
-//   - Refs system
-//   - Fragments & Portals
-//   - Built-in widgets (Container, Text, Input, Button, List, ScrollView, Modal, etc.)
-//
-// Usage:
-//   C++:  #define PTUI_IMPLEMENTATION
-//         #include "ptui.hpp"
-//   Python: import ptui
-//
-// MIT License
-// ============================================================================
 
-#ifndef PTUI_HPP
-#define PTUI_HPP
+#ifndef PYTUINT_HPP
+#define PYTUINT_HPP
 
 #include <string>
 #include <vector>
@@ -71,7 +44,7 @@
 // ============================================================================
 // Forward Declarations
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
     class Element;
     class Component;
     class Fiber;
@@ -96,7 +69,7 @@ namespace ptui {
 // ============================================================================
 // Utility
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 namespace util {
 
     inline std::string to_string(const std::any& value) {
@@ -139,7 +112,7 @@ namespace util {
     }
 
 } // namespace util
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Color System (True Color / 256 / Basic)
@@ -147,7 +120,7 @@ namespace util {
 #ifdef RGB
 #undef RGB
 #endif
-namespace ptui {
+namespace PYTUINT {
 
 class Color {
 public:
@@ -266,12 +239,12 @@ namespace colors {
     inline const Color LightGray = Color::RGB(192, 192, 192);
 }
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Style System (CSS-in-JS inspired)
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 enum class FlexDirection { Row, Column, RowReverse, ColumnReverse };
 enum class JustifyContent { FlexStart, FlexEnd, Center, SpaceBetween, SpaceAround, SpaceEvenly };
@@ -431,12 +404,12 @@ struct Style {
     bool operator!=(const Style& other) const { return !(*this == other); }
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Event System
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 enum class EventType {
     None, KeyPress, KeyRelease, MouseClick, MouseRelease, MouseMove, MouseWheel,
@@ -478,12 +451,12 @@ struct Event {
     void prevent_default() { default_prevented = true; }
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Element (Virtual DOM Node)
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Element : public std::enable_shared_from_this<Element> {
 public:
@@ -600,12 +573,12 @@ namespace jsx {
     }
 }
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Ref System
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Ref : public std::enable_shared_from_this<Ref> {
 public:
@@ -627,12 +600,12 @@ private:
     std::shared_ptr<void> m_current;
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Context System
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Context : public std::enable_shared_from_this<Context> {
 public:
@@ -672,12 +645,12 @@ namespace context {
     }
 }
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Hooks System
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 namespace hooks {
 
@@ -848,12 +821,12 @@ namespace hooks {
     }
 
 } // namespace hooks
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Component Base Class
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Component : public std::enable_shared_from_this<Component> {
 public:
@@ -904,12 +877,12 @@ private:
     std::weak_ptr<class Reconciler> m_reconciler;
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Fiber (Internal reconciliation unit)
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Fiber : public std::enable_shared_from_this<Fiber> {
 public:
@@ -977,12 +950,12 @@ private:
     std::vector<FiberPtr> m_children;
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Reconciler (Virtual DOM diffing)
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Reconciler : public std::enable_shared_from_this<Reconciler> {
 public:
@@ -1168,12 +1141,12 @@ private:
     std::condition_variable m_cv;
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Animation System
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Animation : public std::enable_shared_from_this<Animation> {
 public:
@@ -1315,12 +1288,12 @@ private:
     std::thread m_thread;
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Router System
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Router : public std::enable_shared_from_this<Router> {
 public:
@@ -1382,12 +1355,12 @@ private:
     std::function<void(const std::string&)> m_on_change;
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Theme System
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Theme {
 public:
@@ -1449,12 +1422,12 @@ public:
     }
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Built-in Widgets
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 namespace widgets {
 
 // Container
@@ -1629,9 +1602,9 @@ private:
 };
 
 } // namespace widgets
-} // namespace ptui
+} // namespace PYTUINT
 
-namespace ptui {
+namespace PYTUINT {
 
 struct Cell {
     char32_t ch = U' ';
@@ -1639,12 +1612,12 @@ struct Cell {
     bool transparent = false;
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Terminal Context (raw mode, size, input handling)
 // ============================================================================
-namespace ptui {
+namespace PYTUINT {
 
 class Terminal {
 public:
@@ -1939,12 +1912,12 @@ private:
     std::vector<Cell> m_backbuffer;
 };
 
-} // namespace ptui
+} // namespace PYTUINT
 
 // ============================================================================
 // Python Bindings (pybind11)
 // ============================================================================
-#ifdef PTUI_PYTHON_BINDINGS
+#ifdef PYTUINT_PYTHON_BINDINGS
 
 #include <pybind11/pybind11.h>
 #include <pybind11/functional.h>
@@ -1952,121 +1925,121 @@ private:
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(ptui, m) {
-    m.doc() = "PTUI: Professional Terminal User Interface - React-inspired TUI framework";
+PYBIND11_MODULE(PYTUINT, m) {
+    m.doc() = "PYTUINT: Professional Terminal User Interface - React-inspired TUI framework";
 
     // Color
-    py::class_<ptui::Color>(m, "Color")
+    py::class_<PYTUINT::Color>(m, "Color")
         .def(py::init<>())
-        .def_static("RGB", &ptui::Color::RGB)
-        .def_static("Indexed", &ptui::Color::Indexed)
-        .def_static("Basic", &ptui::Color::Basic)
-        .def_static("Hex", &ptui::Color::Hex)
-        .def_property_readonly("r", [](const ptui::Color& c) { uint8_t r,g,b; c.rgb(r,g,b); return r; })
-        .def_property_readonly("g", [](const ptui::Color& c) { uint8_t r,g,b; c.rgb(r,g,b); return g; })
-        .def_property_readonly("b", [](const ptui::Color& c) { uint8_t r,g,b; c.rgb(r,g,b); return b; })
-        .def("lighten", &ptui::Color::lighten)
-        .def("darken", &ptui::Color::darken);
+        .def_static("RGB", &PYTUINT::Color::RGB)
+        .def_static("Indexed", &PYTUINT::Color::Indexed)
+        .def_static("Basic", &PYTUINT::Color::Basic)
+        .def_static("Hex", &PYTUINT::Color::Hex)
+        .def_property_readonly("r", [](const PYTUINT::Color& c) { uint8_t r,g,b; c.rgb(r,g,b); return r; })
+        .def_property_readonly("g", [](const PYTUINT::Color& c) { uint8_t r,g,b; c.rgb(r,g,b); return g; })
+        .def_property_readonly("b", [](const PYTUINT::Color& c) { uint8_t r,g,b; c.rgb(r,g,b); return b; })
+        .def("lighten", &PYTUINT::Color::lighten)
+        .def("darken", &PYTUINT::Color::darken);
 
     // Style
-    py::class_<ptui::Style>(m, "Style")
+    py::class_<PYTUINT::Style>(m, "Style")
         .def(py::init<>())
-        .def("fg", &ptui::Style::fg)
-        .def("bg", &ptui::Style::bg)
-        .def("bold", &ptui::Style::set_bold)
-        .def("italic", &ptui::Style::set_italic)
-        .def("underline", &ptui::Style::set_underline)
-        .def("strikethrough", &ptui::Style::set_strikethrough)
-        .def("reverse", &ptui::Style::set_reverse)
-        .def("blink", &ptui::Style::set_blink)
-        .def("dim", &ptui::Style::set_dim)
-        .def("set_width", &ptui::Style::set_width)
-        .def("set_height", &ptui::Style::set_height)
-        .def("set_margin", py::overload_cast<int>(&ptui::Style::set_margin))
-        .def("set_padding", py::overload_cast<int>(&ptui::Style::set_padding))
-        .def("set_border_radius", &ptui::Style::set_border_radius)
-        .def("set_text_align", &ptui::Style::set_text_align)
-        .def("set_font_weight", &ptui::Style::set_font_weight)
-        .def("set_font_style", &ptui::Style::set_font_style)
-        .def("set_visible", &ptui::Style::set_visible)
-        .def("render", &ptui::Style::render)
-        .def_static("reset", &ptui::Style::reset);
+        .def("fg", &PYTUINT::Style::fg)
+        .def("bg", &PYTUINT::Style::bg)
+        .def("bold", &PYTUINT::Style::set_bold)
+        .def("italic", &PYTUINT::Style::set_italic)
+        .def("underline", &PYTUINT::Style::set_underline)
+        .def("strikethrough", &PYTUINT::Style::set_strikethrough)
+        .def("reverse", &PYTUINT::Style::set_reverse)
+        .def("blink", &PYTUINT::Style::set_blink)
+        .def("dim", &PYTUINT::Style::set_dim)
+        .def("set_width", &PYTUINT::Style::set_width)
+        .def("set_height", &PYTUINT::Style::set_height)
+        .def("set_margin", py::overload_cast<int>(&PYTUINT::Style::set_margin))
+        .def("set_padding", py::overload_cast<int>(&PYTUINT::Style::set_padding))
+        .def("set_border_radius", &PYTUINT::Style::set_border_radius)
+        .def("set_text_align", &PYTUINT::Style::set_text_align)
+        .def("set_font_weight", &PYTUINT::Style::set_font_weight)
+        .def("set_font_style", &PYTUINT::Style::set_font_style)
+        .def("set_visible", &PYTUINT::Style::set_visible)
+        .def("render", &PYTUINT::Style::render)
+        .def_static("reset", &PYTUINT::Style::reset);
 
     // Event/Key
-    py::enum_<ptui::Key>(m, "Key")
-        .value("Up", ptui::Key::Up)
-        .value("Down", ptui::Key::Down)
-        .value("Left", ptui::Key::Left)
-        .value("Right", ptui::Key::Right)
-        .value("Enter", ptui::Key::Enter)
-        .value("Escape", ptui::Key::Escape)
-        .value("Backspace", ptui::Key::Backspace)
-        .value("Tab", ptui::Key::Tab)
-        .value("Space", ptui::Key::Space)
-        .value("F1", ptui::Key::F1)
-        .value("F12", ptui::Key::F12)
-        .value("CtrlC", ptui::Key::CtrlC)
-        .value("CtrlD", ptui::Key::CtrlD)
-        .value("CtrlZ", ptui::Key::CtrlZ);
+    py::enum_<PYTUINT::Key>(m, "Key")
+        .value("Up", PYTUINT::Key::Up)
+        .value("Down", PYTUINT::Key::Down)
+        .value("Left", PYTUINT::Key::Left)
+        .value("Right", PYTUINT::Key::Right)
+        .value("Enter", PYTUINT::Key::Enter)
+        .value("Escape", PYTUINT::Key::Escape)
+        .value("Backspace", PYTUINT::Key::Backspace)
+        .value("Tab", PYTUINT::Key::Tab)
+        .value("Space", PYTUINT::Key::Space)
+        .value("F1", PYTUINT::Key::F1)
+        .value("F12", PYTUINT::Key::F12)
+        .value("CtrlC", PYTUINT::Key::CtrlC)
+        .value("CtrlD", PYTUINT::Key::CtrlD)
+        .value("CtrlZ", PYTUINT::Key::CtrlZ);
 
-    py::enum_<ptui::EventType>(m, "EventType")
-        .value("NoEvent", ptui::EventType::None)
-        .value("None_", ptui::EventType::None)
-        .value("KeyPress", ptui::EventType::KeyPress)
-        .value("KeyRelease", ptui::EventType::KeyRelease)
-        .value("MouseClick", ptui::EventType::MouseClick)
-        .value("MouseMove", ptui::EventType::MouseMove)
-        .value("Resize", ptui::EventType::Resize)
-        .value("Focus", ptui::EventType::Focus)
-        .value("Blur", ptui::EventType::Blur);
+    py::enum_<PYTUINT::EventType>(m, "EventType")
+        .value("NoEvent", PYTUINT::EventType::None)
+        .value("None_", PYTUINT::EventType::None)
+        .value("KeyPress", PYTUINT::EventType::KeyPress)
+        .value("KeyRelease", PYTUINT::EventType::KeyRelease)
+        .value("MouseClick", PYTUINT::EventType::MouseClick)
+        .value("MouseMove", PYTUINT::EventType::MouseMove)
+        .value("Resize", PYTUINT::EventType::Resize)
+        .value("Focus", PYTUINT::EventType::Focus)
+        .value("Blur", PYTUINT::EventType::Blur);
 
-    py::class_<ptui::Event>(m, "Event")
-        .def_readonly("type", &ptui::Event::type)
-        .def_readonly("key", &ptui::Event::key)
-        .def_readonly("char_code", &ptui::Event::char_code)
-        .def_readonly("mouse_x", &ptui::Event::mouse_x)
-        .def_readonly("mouse_y", &ptui::Event::mouse_y)
-        .def("stop_propagation", &ptui::Event::stop_propagation)
-        .def("prevent_default", &ptui::Event::prevent_default);
+    py::class_<PYTUINT::Event>(m, "Event")
+        .def_readonly("type", &PYTUINT::Event::type)
+        .def_readonly("key", &PYTUINT::Event::key)
+        .def_readonly("char_code", &PYTUINT::Event::char_code)
+        .def_readonly("mouse_x", &PYTUINT::Event::mouse_x)
+        .def_readonly("mouse_y", &PYTUINT::Event::mouse_y)
+        .def("stop_propagation", &PYTUINT::Event::stop_propagation)
+        .def("prevent_default", &PYTUINT::Event::prevent_default);
 
     // Element
-    py::class_<ptui::Element, ptui::ElementPtr>(m, "Element")
-        .def_static("create", py::overload_cast<const std::string&, ptui::Element::PropMap, ptui::Element::Children>(&ptui::Element::create))
-        .def_static("text", &ptui::Element::text)
-        .def_static("fragment", &ptui::Element::fragment)
-        .def("set_key", &ptui::Element::set_key)
-        .def("set_prop", &ptui::Element::set_prop)
-        .def("set_style", &ptui::Element::set_style)
-        .def("add_child", &ptui::Element::add_child)
-        .def("add_children", &ptui::Element::add_children)
-        .def("prop_str", &ptui::Element::prop_str)
-        .def("prop_int", &ptui::Element::prop_int)
-        .def("prop_bool", &ptui::Element::prop_bool)
-        .def_readonly("type", &ptui::Element::type)
-        .def_readonly("children", &ptui::Element::children);
+    py::class_<PYTUINT::Element, PYTUINT::ElementPtr>(m, "Element")
+        .def_static("create", py::overload_cast<const std::string&, PYTUINT::Element::PropMap, PYTUINT::Element::Children>(&PYTUINT::Element::create))
+        .def_static("text", &PYTUINT::Element::text)
+        .def_static("fragment", &PYTUINT::Element::fragment)
+        .def("set_key", &PYTUINT::Element::set_key)
+        .def("set_prop", &PYTUINT::Element::set_prop)
+        .def("set_style", &PYTUINT::Element::set_style)
+        .def("add_child", &PYTUINT::Element::add_child)
+        .def("add_children", &PYTUINT::Element::add_children)
+        .def("prop_str", &PYTUINT::Element::prop_str)
+        .def("prop_int", &PYTUINT::Element::prop_int)
+        .def("prop_bool", &PYTUINT::Element::prop_bool)
+        .def_readonly("type", &PYTUINT::Element::type)
+        .def_readonly("children", &PYTUINT::Element::children);
 
     // Ref
-    py::class_<ptui::Ref, ptui::RefPtr>(m, "Ref")
+    py::class_<PYTUINT::Ref, PYTUINT::RefPtr>(m, "Ref")
         .def(py::init<>())
-        .def("reset", &ptui::Ref::reset);
+        .def("reset", &PYTUINT::Ref::reset);
 
     // Context
-    py::class_<ptui::Context, ptui::ContextPtr>(m, "Context")
+    py::class_<PYTUINT::Context, PYTUINT::ContextPtr>(m, "Context")
         .def(py::init<>())
-        .def_static("create", &ptui::Context::create)
-        .def("value", py::overload_cast<>(&ptui::Context::value))
-        .def("set_value", &ptui::Context::set_value);
+        .def_static("create", &PYTUINT::Context::create)
+        .def("value", py::overload_cast<>(&PYTUINT::Context::value))
+        .def("set_value", &PYTUINT::Context::set_value);
 
     // Component
-    py::class_<ptui::Component, ptui::ComponentPtr>(m, "Component")
+    py::class_<PYTUINT::Component, PYTUINT::ComponentPtr>(m, "Component")
         .def(py::init<>())
-        .def("render", &ptui::Component::render)
-        .def("on_mount", &ptui::Component::on_mount)
-        .def("on_update", &ptui::Component::on_update)
-        .def("on_unmount", &ptui::Component::on_unmount)
-        .def("force_update", &ptui::Component::force_update)
-        .def("set_state", &ptui::Component::set_state)
-        .def("state", &ptui::Component::state);
+        .def("render", &PYTUINT::Component::render)
+        .def("on_mount", &PYTUINT::Component::on_mount)
+        .def("on_update", &PYTUINT::Component::on_update)
+        .def("on_unmount", &PYTUINT::Component::on_unmount)
+        .def("force_update", &PYTUINT::Component::force_update)
+        .def("set_state", &PYTUINT::Component::set_state)
+        .def("state", &PYTUINT::Component::state);
 
     // Hooks
     m.def("use_state", [](const py::object& initial) {
@@ -2085,157 +2058,157 @@ PYBIND11_MODULE(ptui, m) {
     });
 
     m.def("use_context", [](const std::string& context_id) {
-        auto ctx = ptui::context::get(context_id);
+        auto ctx = PYTUINT::context::get(context_id);
         if (!ctx) throw std::runtime_error("Context not found: " + context_id);
         return ctx->value();
     });
 
     // Animation
-    py::class_<ptui::Animation, ptui::AnimationPtr>(m, "Animation")
-        .def_static("create", &ptui::Animation::create)
-        .def("add_keyframe", &ptui::Animation::add_keyframe)
-        .def("on_update", &ptui::Animation::on_update)
-        .def("on_complete", &ptui::Animation::on_complete)
-        .def("start", &ptui::Animation::start)
-        .def("stop", &ptui::Animation::stop)
-        .def("is_running", &ptui::Animation::is_running);
+    py::class_<PYTUINT::Animation, PYTUINT::AnimationPtr>(m, "Animation")
+        .def_static("create", &PYTUINT::Animation::create)
+        .def("add_keyframe", &PYTUINT::Animation::add_keyframe)
+        .def("on_update", &PYTUINT::Animation::on_update)
+        .def("on_complete", &PYTUINT::Animation::on_complete)
+        .def("start", &PYTUINT::Animation::start)
+        .def("stop", &PYTUINT::Animation::stop)
+        .def("is_running", &PYTUINT::Animation::is_running);
 
     // Router
-    py::class_<ptui::Router, ptui::RouterPtr>(m, "Router")
+    py::class_<PYTUINT::Router, PYTUINT::RouterPtr>(m, "Router")
         .def(py::init<>())
-        .def_static("create", &ptui::Router::create)
-        .def("add_route", &ptui::Router::add_route)
-        .def("set_fallback", &ptui::Router::set_fallback)
-        .def("navigate", &ptui::Router::navigate)
-        .def("back", &ptui::Router::back)
-        .def("current_route", &ptui::Router::current_route)
-        .def("render_current", &ptui::Router::render_current)
-        .def("on_change", &ptui::Router::on_change);
+        .def_static("create", &PYTUINT::Router::create)
+        .def("add_route", &PYTUINT::Router::add_route)
+        .def("set_fallback", &PYTUINT::Router::set_fallback)
+        .def("navigate", &PYTUINT::Router::navigate)
+        .def("back", &PYTUINT::Router::back)
+        .def("current_route", &PYTUINT::Router::current_route)
+        .def("render_current", &PYTUINT::Router::render_current)
+        .def("on_change", &PYTUINT::Router::on_change);
 
     // Theme
-    py::class_<ptui::Theme>(m, "Theme")
-        .def_static("global", &ptui::Theme::global, py::return_value_policy::reference)
-        .def("set_dark", &ptui::Theme::set_dark)
-        .def("set_light", &ptui::Theme::set_light)
-        .def_readwrite("colors", &ptui::Theme::ColorScheme);
+    py::class_<PYTUINT::Theme>(m, "Theme")
+        .def_static("global", &PYTUINT::Theme::global, py::return_value_policy::reference)
+        .def("set_dark", &PYTUINT::Theme::set_dark)
+        .def("set_light", &PYTUINT::Theme::set_light)
+        .def_readwrite("colors", &PYTUINT::Theme::ColorScheme);
 
     // Terminal
-    py::class_<ptui::Terminal>(m, "Terminal")
+    py::class_<PYTUINT::Terminal>(m, "Terminal")
         .def(py::init<>())
-        .def("init", &ptui::Terminal::init)
-        .def("shutdown", &ptui::Terminal::shutdown)
-        .def("width", &ptui::Terminal::width)
-        .def("height", &ptui::Terminal::height)
-        .def("clear", &ptui::Terminal::clear)
-        .def("present", &ptui::Terminal::present)
-        .def("draw_text", &ptui::Terminal::draw_text)
-        .def("draw_rect", &ptui::Terminal::draw_rect)
-        .def("draw_box", &ptui::Terminal::draw_box)
-        .def("set_cursor", &ptui::Terminal::set_cursor)
-        .def("show_cursor", &ptui::Terminal::show_cursor)
-        .def("set_title", &ptui::Terminal::set_title)
-        .def("set_event_callback", &ptui::Terminal::set_event_callback)
-        .def("get_event", &ptui::Terminal::get_event)
-        .def("has_event", &ptui::Terminal::has_event);
+        .def("init", &PYTUINT::Terminal::init)
+        .def("shutdown", &PYTUINT::Terminal::shutdown)
+        .def("width", &PYTUINT::Terminal::width)
+        .def("height", &PYTUINT::Terminal::height)
+        .def("clear", &PYTUINT::Terminal::clear)
+        .def("present", &PYTUINT::Terminal::present)
+        .def("draw_text", &PYTUINT::Terminal::draw_text)
+        .def("draw_rect", &PYTUINT::Terminal::draw_rect)
+        .def("draw_box", &PYTUINT::Terminal::draw_box)
+        .def("set_cursor", &PYTUINT::Terminal::set_cursor)
+        .def("show_cursor", &PYTUINT::Terminal::show_cursor)
+        .def("set_title", &PYTUINT::Terminal::set_title)
+        .def("set_event_callback", &PYTUINT::Terminal::set_event_callback)
+        .def("get_event", &PYTUINT::Terminal::get_event)
+        .def("has_event", &PYTUINT::Terminal::has_event);
 
     // Built-in widgets
     py::module_ widgets = m.def_submodule("widgets", "Built-in widgets");
     
-    py::class_<ptui::widgets::Container, ptui::Component, std::shared_ptr<ptui::widgets::Container>>(widgets, "Container")
-        .def(py::init<ptui::Style, std::vector<ptui::ElementPtr>>(), py::arg("style") = ptui::Style{}, py::arg("children") = std::vector<ptui::ElementPtr>{})
-        .def("set_style", &ptui::widgets::Container::set_style)
-        .def("set_children", &ptui::widgets::Container::set_children);
+    py::class_<PYTUINT::widgets::Container, PYTUINT::Component, std::shared_ptr<PYTUINT::widgets::Container>>(widgets, "Container")
+        .def(py::init<PYTUINT::Style, std::vector<PYTUINT::ElementPtr>>(), py::arg("style") = PYTUINT::Style{}, py::arg("children") = std::vector<PYTUINT::ElementPtr>{})
+        .def("set_style", &PYTUINT::widgets::Container::set_style)
+        .def("set_children", &PYTUINT::widgets::Container::set_children);
 
-    py::class_<ptui::widgets::Text, ptui::Component, std::shared_ptr<ptui::widgets::Text>>(widgets, "Text")
-        .def(py::init<std::string, ptui::Style>(), py::arg("content") = "", py::arg("style") = ptui::Style{})
-        .def("set_content", &ptui::widgets::Text::set_content)
-        .def("set_style", &ptui::widgets::Text::set_style);
+    py::class_<PYTUINT::widgets::Text, PYTUINT::Component, std::shared_ptr<PYTUINT::widgets::Text>>(widgets, "Text")
+        .def(py::init<std::string, PYTUINT::Style>(), py::arg("content") = "", py::arg("style") = PYTUINT::Style{})
+        .def("set_content", &PYTUINT::widgets::Text::set_content)
+        .def("set_style", &PYTUINT::widgets::Text::set_style);
 
-    py::class_<ptui::widgets::Button, ptui::Component, std::shared_ptr<ptui::widgets::Button>>(widgets, "Button")
-        .def(py::init<std::string, std::function<void()>, ptui::Style>(), py::arg("label") = "", py::arg("on_click") = nullptr, py::arg("style") = ptui::Style{})
-        .def("set_label", &ptui::widgets::Button::set_label)
-        .def("set_on_click", &ptui::widgets::Button::set_on_click)
-        .def("set_style", &ptui::widgets::Button::set_style);
+    py::class_<PYTUINT::widgets::Button, PYTUINT::Component, std::shared_ptr<PYTUINT::widgets::Button>>(widgets, "Button")
+        .def(py::init<std::string, std::function<void()>, PYTUINT::Style>(), py::arg("label") = "", py::arg("on_click") = nullptr, py::arg("style") = PYTUINT::Style{})
+        .def("set_label", &PYTUINT::widgets::Button::set_label)
+        .def("set_on_click", &PYTUINT::widgets::Button::set_on_click)
+        .def("set_style", &PYTUINT::widgets::Button::set_style);
 
-    py::class_<ptui::widgets::TextInput, ptui::Component, std::shared_ptr<ptui::widgets::TextInput>>(widgets, "TextInput")
-        .def(py::init<std::string, std::function<void(const std::string&)>, ptui::Style>(), py::arg("placeholder") = "", py::arg("on_change") = nullptr, py::arg("style") = ptui::Style{})
-        .def("set_value", &ptui::widgets::TextInput::set_value)
-        .def("value", &ptui::widgets::TextInput::value)
-        .def("set_placeholder", &ptui::widgets::TextInput::set_placeholder)
-        .def("set_on_change", &ptui::widgets::TextInput::set_on_change)
-        .def("set_style", &ptui::widgets::TextInput::set_style);
+    py::class_<PYTUINT::widgets::TextInput, PYTUINT::Component, std::shared_ptr<PYTUINT::widgets::TextInput>>(widgets, "TextInput")
+        .def(py::init<std::string, std::function<void(const std::string&)>, PYTUINT::Style>(), py::arg("placeholder") = "", py::arg("on_change") = nullptr, py::arg("style") = PYTUINT::Style{})
+        .def("set_value", &PYTUINT::widgets::TextInput::set_value)
+        .def("value", &PYTUINT::widgets::TextInput::value)
+        .def("set_placeholder", &PYTUINT::widgets::TextInput::set_placeholder)
+        .def("set_on_change", &PYTUINT::widgets::TextInput::set_on_change)
+        .def("set_style", &PYTUINT::widgets::TextInput::set_style);
 
-    py::class_<ptui::widgets::List, ptui::Component, std::shared_ptr<ptui::widgets::List>>(widgets, "List")
-        .def(py::init<std::vector<std::any>, ptui::widgets::List::ItemRenderer, ptui::Style>(), py::arg("items") = std::vector<std::any>{}, py::arg("renderer") = nullptr, py::arg("style") = ptui::Style{})
-        .def("set_items", &ptui::widgets::List::set_items)
-        .def("set_renderer", &ptui::widgets::List::set_renderer)
-        .def("set_style", &ptui::widgets::List::set_style);
+    py::class_<PYTUINT::widgets::List, PYTUINT::Component, std::shared_ptr<PYTUINT::widgets::List>>(widgets, "List")
+        .def(py::init<std::vector<std::any>, PYTUINT::widgets::List::ItemRenderer, PYTUINT::Style>(), py::arg("items") = std::vector<std::any>{}, py::arg("renderer") = nullptr, py::arg("style") = PYTUINT::Style{})
+        .def("set_items", &PYTUINT::widgets::List::set_items)
+        .def("set_renderer", &PYTUINT::widgets::List::set_renderer)
+        .def("set_style", &PYTUINT::widgets::List::set_style);
 
-    py::class_<ptui::widgets::ScrollView, ptui::Component, std::shared_ptr<ptui::widgets::ScrollView>>(widgets, "ScrollView")
-        .def(py::init<ptui::ElementPtr, ptui::Style>(), py::arg("child") = nullptr, py::arg("style") = ptui::Style{})
-        .def("set_child", &ptui::widgets::ScrollView::set_child)
-        .def("set_style", &ptui::widgets::ScrollView::set_style);
+    py::class_<PYTUINT::widgets::ScrollView, PYTUINT::Component, std::shared_ptr<PYTUINT::widgets::ScrollView>>(widgets, "ScrollView")
+        .def(py::init<PYTUINT::ElementPtr, PYTUINT::Style>(), py::arg("child") = nullptr, py::arg("style") = PYTUINT::Style{})
+        .def("set_child", &PYTUINT::widgets::ScrollView::set_child)
+        .def("set_style", &PYTUINT::widgets::ScrollView::set_style);
 
-    py::class_<ptui::widgets::Modal, ptui::Component, std::shared_ptr<ptui::widgets::Modal>>(widgets, "Modal")
-        .def(py::init<bool, ptui::ElementPtr, std::function<void()>, ptui::Style>(), py::arg("visible") = false, py::arg("child") = nullptr, py::arg("on_close") = nullptr, py::arg("style") = ptui::Style{})
-        .def("set_visible", &ptui::widgets::Modal::set_visible)
-        .def("set_child", &ptui::widgets::Modal::set_child)
-        .def("set_on_close", &ptui::widgets::Modal::set_on_close)
-        .def("set_style", &ptui::widgets::Modal::set_style);
+    py::class_<PYTUINT::widgets::Modal, PYTUINT::Component, std::shared_ptr<PYTUINT::widgets::Modal>>(widgets, "Modal")
+        .def(py::init<bool, PYTUINT::ElementPtr, std::function<void()>, PYTUINT::Style>(), py::arg("visible") = false, py::arg("child") = nullptr, py::arg("on_close") = nullptr, py::arg("style") = PYTUINT::Style{})
+        .def("set_visible", &PYTUINT::widgets::Modal::set_visible)
+        .def("set_child", &PYTUINT::widgets::Modal::set_child)
+        .def("set_on_close", &PYTUINT::widgets::Modal::set_on_close)
+        .def("set_style", &PYTUINT::widgets::Modal::set_style);
 
     // Colors submodule
     py::module_ colors = m.def_submodule("colors", "Color constants");
-    colors.attr("Red") = ptui::colors::Red;
-    colors.attr("Green") = ptui::colors::Green;
-    colors.attr("Blue") = ptui::colors::Blue;
-    colors.attr("Yellow") = ptui::colors::Yellow;
-    colors.attr("Cyan") = ptui::colors::Cyan;
-    colors.attr("Magenta") = ptui::colors::Magenta;
-    colors.attr("White") = ptui::colors::White;
-    colors.attr("Default") = ptui::colors::Default;
-    colors.attr("BrightRed") = ptui::colors::BrightRed;
-    colors.attr("BrightGreen") = ptui::colors::BrightGreen;
-    colors.attr("BrightBlue") = ptui::colors::BrightBlue;
-    colors.attr("BrightYellow") = ptui::colors::BrightYellow;
-    colors.attr("BrightCyan") = ptui::colors::BrightCyan;
-    colors.attr("BrightMagenta") = ptui::colors::BrightMagenta;
-    colors.attr("BrightWhite") = ptui::colors::BrightWhite;
-    colors.attr("Orange") = ptui::colors::Orange;
-    colors.attr("Pink") = ptui::colors::Pink;
-    colors.attr("Purple") = ptui::colors::Purple;
-    colors.attr("Gray") = ptui::colors::Gray;
-    colors.attr("DarkGray") = ptui::colors::DarkGray;
-    colors.attr("LightGray") = ptui::colors::LightGray;
+    colors.attr("Red") = PYTUINT::colors::Red;
+    colors.attr("Green") = PYTUINT::colors::Green;
+    colors.attr("Blue") = PYTUINT::colors::Blue;
+    colors.attr("Yellow") = PYTUINT::colors::Yellow;
+    colors.attr("Cyan") = PYTUINT::colors::Cyan;
+    colors.attr("Magenta") = PYTUINT::colors::Magenta;
+    colors.attr("White") = PYTUINT::colors::White;
+    colors.attr("Default") = PYTUINT::colors::Default;
+    colors.attr("BrightRed") = PYTUINT::colors::BrightRed;
+    colors.attr("BrightGreen") = PYTUINT::colors::BrightGreen;
+    colors.attr("BrightBlue") = PYTUINT::colors::BrightBlue;
+    colors.attr("BrightYellow") = PYTUINT::colors::BrightYellow;
+    colors.attr("BrightCyan") = PYTUINT::colors::BrightCyan;
+    colors.attr("BrightMagenta") = PYTUINT::colors::BrightMagenta;
+    colors.attr("BrightWhite") = PYTUINT::colors::BrightWhite;
+    colors.attr("Orange") = PYTUINT::colors::Orange;
+    colors.attr("Pink") = PYTUINT::colors::Pink;
+    colors.attr("Purple") = PYTUINT::colors::Purple;
+    colors.attr("Gray") = PYTUINT::colors::Gray;
+    colors.attr("DarkGray") = PYTUINT::colors::DarkGray;
+    colors.attr("LightGray") = PYTUINT::colors::LightGray;
 
     // Easing functions
     py::module_ easing = m.def_submodule("easing", "Animation easing functions");
-    easing.def("linear", &ptui::Animation::linear);
-    easing.def("ease_in_quad", &ptui::Animation::ease_in_quad);
-    easing.def("ease_out_quad", &ptui::Animation::ease_out_quad);
-    easing.def("ease_in_out_quad", &ptui::Animation::ease_in_out_quad);
-    easing.def("ease_in_cubic", &ptui::Animation::ease_in_cubic);
-    easing.def("ease_out_cubic", &ptui::Animation::ease_out_cubic);
-    easing.def("ease_in_out_cubic", &ptui::Animation::ease_in_out_cubic);
-    easing.def("ease_in_sine", &ptui::Animation::ease_in_sine);
-    easing.def("ease_out_sine", &ptui::Animation::ease_out_sine);
-    easing.def("ease_in_out_sine", &ptui::Animation::ease_in_out_sine);
-    easing.def("ease_in_expo", &ptui::Animation::ease_in_expo);
-    easing.def("ease_out_expo", &ptui::Animation::ease_out_expo);
-    easing.def("ease_in_out_expo", &ptui::Animation::ease_in_out_expo);
-    easing.def("ease_in_circ", &ptui::Animation::ease_in_circ);
-    easing.def("ease_out_circ", &ptui::Animation::ease_out_circ);
-    easing.def("ease_in_out_circ", &ptui::Animation::ease_in_out_circ);
-    easing.def("ease_in_back", &ptui::Animation::ease_in_back);
-    easing.def("ease_out_back", &ptui::Animation::ease_out_back);
-    easing.def("ease_in_out_back", &ptui::Animation::ease_in_out_back);
-    easing.def("ease_in_elastic", &ptui::Animation::ease_in_elastic);
-    easing.def("ease_out_elastic", &ptui::Animation::ease_out_elastic);
-    easing.def("ease_in_out_elastic", &ptui::Animation::ease_in_out_elastic);
-    easing.def("ease_in_bounce", &ptui::Animation::ease_in_bounce);
-    easing.def("ease_out_bounce", &ptui::Animation::ease_out_bounce);
-    easing.def("ease_in_out_bounce", &ptui::Animation::ease_in_out_bounce);
+    easing.def("linear", &PYTUINT::Animation::linear);
+    easing.def("ease_in_quad", &PYTUINT::Animation::ease_in_quad);
+    easing.def("ease_out_quad", &PYTUINT::Animation::ease_out_quad);
+    easing.def("ease_in_out_quad", &PYTUINT::Animation::ease_in_out_quad);
+    easing.def("ease_in_cubic", &PYTUINT::Animation::ease_in_cubic);
+    easing.def("ease_out_cubic", &PYTUINT::Animation::ease_out_cubic);
+    easing.def("ease_in_out_cubic", &PYTUINT::Animation::ease_in_out_cubic);
+    easing.def("ease_in_sine", &PYTUINT::Animation::ease_in_sine);
+    easing.def("ease_out_sine", &PYTUINT::Animation::ease_out_sine);
+    easing.def("ease_in_out_sine", &PYTUINT::Animation::ease_in_out_sine);
+    easing.def("ease_in_expo", &PYTUINT::Animation::ease_in_expo);
+    easing.def("ease_out_expo", &PYTUINT::Animation::ease_out_expo);
+    easing.def("ease_in_out_expo", &PYTUINT::Animation::ease_in_out_expo);
+    easing.def("ease_in_circ", &PYTUINT::Animation::ease_in_circ);
+    easing.def("ease_out_circ", &PYTUINT::Animation::ease_out_circ);
+    easing.def("ease_in_out_circ", &PYTUINT::Animation::ease_in_out_circ);
+    easing.def("ease_in_back", &PYTUINT::Animation::ease_in_back);
+    easing.def("ease_out_back", &PYTUINT::Animation::ease_out_back);
+    easing.def("ease_in_out_back", &PYTUINT::Animation::ease_in_out_back);
+    easing.def("ease_in_elastic", &PYTUINT::Animation::ease_in_elastic);
+    easing.def("ease_out_elastic", &PYTUINT::Animation::ease_out_elastic);
+    easing.def("ease_in_out_elastic", &PYTUINT::Animation::ease_in_out_elastic);
+    easing.def("ease_in_bounce", &PYTUINT::Animation::ease_in_bounce);
+    easing.def("ease_out_bounce", &PYTUINT::Animation::ease_out_bounce);
+    easing.def("ease_in_out_bounce", &PYTUINT::Animation::ease_in_out_bounce);
 }
 
-#endif // PTUI_PYTHON_BINDINGS
+#endif // PYTUINT_PYTHON_BINDINGS
 
-#endif // PTUI_HPP
+#endif // PYTUINT_HPP

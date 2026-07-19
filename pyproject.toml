@@ -3,7 +3,7 @@ requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ptui-tui"
+name = "PYTUINT-tui"
 version = "0.1.0"
 description = "A Python TUI library"
 requires-python = ">=3.8"

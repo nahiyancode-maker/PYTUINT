@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""AI Chat CLI - ChatGPT-style terminal chat with PTUI"""
+"""AI Chat CLI - ChatGPT-style terminal chat with PYTUINT"""
 
-import ptui
-import ptui.widgets as widgets
+import PYTUINT
+import PYTUIN as widgets
 import random
 import time
 
-class AIChat(ptui.Component):
+class AIChat(PYTUINT.Component):
     def __init__(self):
         super().__init__()
         self.messages = [
-            {"role": "ai", "content": "Hello! I'm PTUI AI. How can I help you today?"}
+            {"role": "ai", "content": "Hello! I'm PYTUINT AI. How can I help you today?"}
         ]
         self.input_value = ""
         self.scroll_offset = 0
@@ -19,19 +19,19 @@ class AIChat(ptui.Component):
     def render(self):
         term = self.state("terminal")
         if not term:
-            return ptui.Element.create("container")
+            return PYTUINT.Element.create("container")
         
         # Header
-        header = widgets.Text("PTUI AI Chat", ptui.Style()
-            .fg(ptui.colors.BrightCyan)
+        header = widgets.Text("PYTUINT AI Chat", PYTUINT.Style()
+            .fg(PYTUINT.colors.BrightCyan)
             .bold()
-            .set_text_align(ptui.TextAlign.Center)
+            .set_text_align(PYTUINT.TextAlign.Center)
             .set_width(term.width()))
         
         # Messages
         msg_elements = []
         for i, msg in enumerate(self.messages):
-            style = ptui.Style().fg(ptui.colors.Green) if msg["role"] == "user" else ptui.Style().fg(ptui.colors.White)
+            style = PYTUINT.Style().fg(PYTUINT.colors.Green) if msg["role"] == "user" else PYTUINT.Style().fg(PYTUINT.colors.White)
             prefix = "You: " if msg["role"] == "user" else "AI: "
             msg_elements.append(widgets.Text(prefix + msg["content"], style))
         
@@ -39,24 +39,24 @@ class AIChat(ptui.Component):
         input_box = widgets.TextInput(
             placeholder="Type your message... (Enter to send, Esc to quit)",
             on_change=self.handle_input_change,
-            style=ptui.Style()
-                .fg(ptui.colors.Gray)
+            style=PYTUINT.Style()
+                .fg(PYTUINT.colors.Gray)
                 .set_width(term.width() - 4)
         )
         
         # Layout
         layout = widgets.Container(
-            ptui.Style()
-                .set_flex_direction(ptui.FlexDirection.Column)
+            PYTUINT.Style()
+                .set_flex_direction(PYTUINT.FlexDirection.Column)
                 .set_padding(1),
             [
                 header,
                 widgets.ScrollView(
                     widgets.Container(
-                        ptui.Style().set_flex_direction(ptui.FlexDirection.Column),
+                        PYTUINT.Style().set_flex_direction(PYTUINT.FlexDirection.Column),
                         msg_elements
                     ),
-                    ptui.Style().set_height(term.height() - 5)
+                    PYTUINT.Style().set_height(term.height() - 5)
                 ),
                 input_box
             ]
@@ -68,7 +68,7 @@ class AIChat(ptui.Component):
         self.input_value = value
     
     def handle_event(self, event):
-        if event.key == ptui.Key.Enter and self.input_value.strip():
+        if event.key == PYTUINT.Key.Enter and self.input_value.strip():
             self.messages.append({"role": "user", "content": self.input_value})
             self.typing = True
             self.input_value = ""
@@ -87,29 +87,29 @@ class AIChat(ptui.Component):
             self.typing = False
             self.force_update()
         
-        elif event.key == ptui.Key.Escape:
+        elif event.key == PYTUINT.Key.Escape:
             return None  # Quit
         
         return self.render()
 
 def main():
-    term = ptui.Terminal()
+    term = PYTUINT.Terminal()
     term.init()
-    term.set_title("PTUI AI Chat")
+    term.set_title("PYTUINT AI Chat")
     term.show_cursor(False)
     
     chat = AIChat()
     chat.set_state("terminal", term)
     
     # Initial render
-    reconciler = ptui.Reconciler(term)
+    reconciler = PYTUINT.Reconciler(term)
     reconciler.mount(chat)
     
     # Event loop
     running = True
     while running:
         event = term.get_event(100)
-        if event.type != ptui.EventType.NoEvent:
+        if event.type != PYTUINT.EventType.NoEvent:
             result = chat.handle_event(event)
             if result is None:
                 running = False

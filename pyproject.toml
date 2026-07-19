@@ -1,9 +1,16 @@
 [build-system]
-requires = ["setuptools>=45", "wheel"]
+requires = ["setuptools>=45", "wheel", "pybind11>=2.10"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "PYTUINT"
 version = "0.1.0"
-description = "A Python TUI library"
+description = "A Python Terminal User Interface library with a C++ rendering engine"
 requires-python = ">=3.8"
+dependencies = ["pybind11>=2.10"]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

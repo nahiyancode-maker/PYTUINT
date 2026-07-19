@@ -1,29 +1,6 @@
 [build-system]
-requires = ["pybind11>=2.10.0", "setuptools>=64", "wheel"]
+requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[project]
-name = "ptui-tui"
-version = "0.1.0"
-description = "Professional Terminal User Interface (PTUI) - React-inspired TUI framework"
-readme = "README.md"
-license = "MIT"
-requires-python = ">=3.8"
-authors = [{name = "Your Name", email = "you@example.com"}]
-keywords = ["tui", "terminal", "ui", "pybind11", "c++"]
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: C++",
-    "Topic :: Software Development :: User Interfaces",
-    "Operating System :: POSIX :: Linux",
-    "Operating System :: MacOS",
-]
-
-[project.urls]
-Homepage = "https://github.com/nahiyancode-maker/ptui"
-Repository = "https://github.com/nahiyancode-maker/ptui"
-Issues = "https://github.com/nahiyancode-maker/ptui/issues"
-
-[tool.setuptools]
-packages = ["ptui", "ptui.submodule"]
+[tool.setuptools.packages.find]
+where = ["src"]

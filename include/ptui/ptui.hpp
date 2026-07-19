@@ -49,6 +49,7 @@
 #include <optional>
 #include <any>
 #include <type_traits>
+#include <cstdint>
 #include <cassert>
 #include <cmath>
 #include <array>

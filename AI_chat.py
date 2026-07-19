@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""AI Chat CLI - ChatGPT-style terminal chat with PYTUINT"""
+"""AI Chat CLI - ChatGPT-style terminal chat with PTUI"""
 
 import PYTUINT
-import PYTUIN as widgets
+
 import random
-import time
+
 
 class AIChat(PYTUINT.Component):
     def __init__(self):
         super().__init__()
         self.messages = [
-            {"role": "ai", "content": "Hello! I'm PYTUINT AI. How can I help you today?"}
+            {"role": "ai", "content": "Hello! I'm PTUI AI. How can I help you today?"}
         ]
         self.input_value = ""
         self.scroll_offset = 0
@@ -22,7 +22,7 @@ class AIChat(PYTUINT.Component):
             return PYTUINT.Element.create("container")
         
         # Header
-        header = widgets.Text("PYTUINT AI Chat", PYTUINT.Style()
+        header = PYTUINT.Text("PYTUINT AI Chat", PYTUINT.Style()
             .fg(PYTUINT.colors.BrightCyan)
             .bold()
             .set_text_align(PYTUINT.TextAlign.Center)
@@ -33,10 +33,10 @@ class AIChat(PYTUINT.Component):
         for i, msg in enumerate(self.messages):
             style = PYTUINT.Style().fg(PYTUINT.colors.Green) if msg["role"] == "user" else PYTUINT.Style().fg(PYTUINT.colors.White)
             prefix = "You: " if msg["role"] == "user" else "AI: "
-            msg_elements.append(widgets.Text(prefix + msg["content"], style))
+            msg_elements.append(PYTUINT.Text(prefix + msg["content"], style))
         
         # Input
-        input_box = widgets.TextInput(
+        input_box = PYTUINT.TextInput(
             placeholder="Type your message... (Enter to send, Esc to quit)",
             on_change=self.handle_input_change,
             style=PYTUINT.Style()
@@ -45,14 +45,14 @@ class AIChat(PYTUINT.Component):
         )
         
         # Layout
-        layout = widgets.Container(
+        layout = PYTUINT.Container(
             PYTUINT.Style()
                 .set_flex_direction(PYTUINT.FlexDirection.Column)
                 .set_padding(1),
             [
                 header,
-                widgets.ScrollView(
-                    widgets.Container(
+                PYTUINT.ScrollView(
+                    PYTUINT.Container(
                         PYTUINT.Style().set_flex_direction(PYTUINT.FlexDirection.Column),
                         msg_elements
                     ),

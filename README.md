@@ -142,7 +142,7 @@ PYTUINT.run(App)
 ### From PyPI (recommended)
 
 ```bash
-pip install pytuint
+pip install git+https://github.com/nahiyancode-maker/PYTUINT
 ```
 
 ### From Source

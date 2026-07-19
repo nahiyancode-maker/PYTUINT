@@ -10,10 +10,10 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![C++](https://img.shields.io/badge/C%2B%2B-20-00599C)
-![Version](https://img.shields.io/badge/version-0.1.0-orange)
+![Version](https://img.shields.io/badge/version-0.3.0-orange)
 
 ```bash
-pip install PYTUINT-tui
+pip install git+https://github.com/nahiyancode-maker/PYTUINT
 ```
 
 </div>
